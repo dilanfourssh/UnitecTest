@@ -1,0 +1,111 @@
+﻿@{
+    Layout = null;
+}
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <title>UniTecTest</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+
+<body>
+   
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom:0px">
+        <a class="navbar-brand" href='@Url.Action("Index", "Home")'>
+            <h4 style="color:#4c94aa">
+               Unitec Employer Service
+            </h4>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link " href='@Url.Action("Index", "Home")'>Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        User
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href='@Url.Action("AddDetils", "Home")'>Add Details</a>
+                        <a class="dropdown-item" href='@Url.Action("LeaveSection", "Home")'>Request Leave</a>
+                        <a class="dropdown-item" href='@Url.Action("MyLeave", "Home")'>Sent Leve</a>
+                        <a class="dropdown-item" href='@Url.Action("ConfirmLeave", "Home")'>Confirmed Leave</a>
+
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Company
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href='@Url.Action("Administrator", "Home")'>Employer Register</a>
+                        <a class="dropdown-item" href='@Url.Action("ShowLeaveForm", "Home")'>check Leves Application</a>
+                        
+
+                    </div>
+                </li>
+
+            </ul>
+            @if (Session["id"] == null)
+            {
+                <a href='@Url.Action("Login", "Home")'>
+                    <button class="btn btn-outline-info" type="submit">Login </button>
+                </a>
+            }
+            else
+            {
+                <a href='@Url.Action("SignOut", "Home")'>
+                    <button class="btn btn-outline-info" type="submit">Sign Out</button>
+                </a>
+            }
+
+        </div>
+    </nav>
+
+
+
+
+
+    <!-- header-end -->
+
+    @RenderBody()
+
+    <!-- footer start -->
+
+    <footer>
+        <div class="container-fluid" style="background-color:#4c94aa; margin-top:50px; color:white">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-sm" style="padding:40px 40px 40px 40px;">
+                        <h2 style="color:white">UniTecTest</h2>
+                        <p>
+                           Colombo Rd,<br />
+                           Gamapaha
+                        </p>
+
+                    </div>
+                    <div class="col-sm" style="padding:40px 40px 40px 40px;">
+                        <h5 style="color:white">Pages</h5>
+                        <h6> MyPersonal Details Add </h6>
+                        <h6> Send Leaves</h6>
+                        <h6> Employer Register </h6>
+                        <h6> Show Leaves</h6>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

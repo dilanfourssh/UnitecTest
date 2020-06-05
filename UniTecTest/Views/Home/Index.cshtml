@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "~/Views/Shared/_customizeshared.cshtml";
+
+}
+<img src="~/Image/employers.png" style="width:100%;" />
+
+<div class="container" style="margin-top:20px">
+
+    <div class="row" id="webtemplatetitle" style="background-color:#598a95ad; border-radius:10px 10px 10px 10px; padding:20px 20px 20px 20px; color:white">
+        <div class="col-md col-sm">
+            <h4 style="color:white">
+               Service Of Unitec
+            </h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm" style="text-align:center">
+            <h5>Employer Add Information</h5>
+            <p>This Section is Employer Can Add To Thair Informations</p>
+            <a class="dropdown-item" href='@Url.Action("AddDetils", "Home")'>
+                <button type="button" class="btn btn-outline-info" style="width:100%">Add My Details</button>
+            </a>
+        </div>
+        <div class="col-sm" style="text-align:center">
+            <h5>Employer Request Leaves</h5>
+            <p>This Section is Employer Can Get To Their Leave and Send leave Form</p>
+            <a class="dropdown-item" href='@Url.Action("LeaveSection", "Home")'>
+                <button type="button" class="btn btn-outline-info" style="width:100%">Request Leave</button>
+            </a>
+        </div>
+        <div class="col-sm" style="text-align:center">
+            <h5>Employer Show Leaves</h5>
+            <p>This Section is Employer Can Show Your Sent Leave Form</p>
+            <a class="dropdown-item" href='@Url.Action("MyLeave", "Home")'>
+                <button type="button" class="btn btn-outline-info" style="width:100%">Show Leave</button>
+            </a>
+        </div>
+    </div>
+</div>

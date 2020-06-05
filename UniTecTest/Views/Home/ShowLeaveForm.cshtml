@@ -1,0 +1,73 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_customizeshared.cshtml";
+    var myleave = ViewBag.myleave;
+
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+@*<style>
+        input.ng-invalid {
+            background-color: red;
+
+
+        }
+        input.ng-valid {
+            background-color: yellow;
+        }
+    </style>*@
+
+<div class="container" style="margin-top:20px">
+
+    <div class="row" id="webtemplatetitle" style="background-color:#598a95ad; border-radius:10px 10px 10px 10px; padding:20px 20px 20px 20px; color:white">
+        <div class="col-md col-sm">
+            <h4 style="color:white">
+                My Leave
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md col-sm">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Leave Type</th>
+                        <th scope="col">Leave Date</th>
+                        <th scope="col">Number Of Days</th>
+                        <th scope="col">Reason</th>
+                        <th scope="col">Confirm</th>
+                        <th scope="col">Reject</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if (myleave != null)
+                        {
+                            foreach (var leave in myleave)
+                            {
+
+                                var levevalue = leave.leaveType + "#" + leave.id + "#" + leave.numberOfDay + "#" + leave.leaveDate;
+                                <tr>
+                                    <th scope="row">@leave.leaveType</th>
+                                    <td>@leave.leaveDate</td>
+                                    <td>@leave.numberOfDay</td>
+                                    <td>@leave.reason</td>
+                                    <td><a class="btn btn-outline-info " href='@Url.Action("AdminDesition", "Home", new { leaveid = @leave.id,decision="con" })'>Confirm</a> </td>
+                                    <td><a class="btn btn-outline-info " href='@Url.Action("AdminDesition", "Home", new { leaveid = @leave.id,decision="notcon" })'>Reject</a> </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <h3> NO LEAVE PREVIEW</h3>
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+

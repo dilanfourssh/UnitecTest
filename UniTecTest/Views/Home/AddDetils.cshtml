@@ -1,0 +1,165 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_customizeshared.cshtml";
+    Boolean updated = ViewBag.updated;
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+@*<style>
+        input.ng-invalid {
+            background-color: red;
+
+
+        }
+        input.ng-valid {
+            background-color: yellow;
+        }
+    </style>*@
+
+<div class="container" style="margin-top:20px">
+
+    <div class="row" id="webtemplatetitle" style="background-color:#598a95ad; border-radius:10px 10px 10px 10px; padding:20px 20px 20px 20px; color:white">
+        <div class="col-md col-sm">
+            <h4 style="color:white">
+                Add Personal Details
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md col-sm">
+            <img src="~/Image/fillform.jpg" style="width:100%" />
+        </div>
+        @if (updated)
+        {
+            <div class="col-sm">
+                <div class="row" style="margin-bottom:30px;">
+                    <div class="col-sm" style="background-color:#598a95ad;margin-top:10px; border-radius:10px 10px 10px 10px; padding:20px 20px 20px 20px; color:white">
+                        <h4 style="text-align:center"> <i class="fas fa-battery-half"></i> Add Employer Details </h4>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm">
+                        <form ngNoForm name="login-form" id="login-form" [formGroup]="loginForm" (submit)="onSubmit()" [action]='@Url.Action("AddDetils", "Home")' method='POST'>
+                            <div class="form-group" ng-app="">
+                                <div ng-app="">
+                                    <label for="exampleInputEmail1"> Enter first Name </label>
+                                    <input type="text" [ngModel]="name" name="name" class="form-control" ng-model="name" id="name" aria-describedby="emailHelp" placeholder="Enter first name" onfocusout="alphanumeric()" required>
+                                    <span style="display:none; color:red" id="nameerror">Please Enter Only Characters</span>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-app="">
+                                <div ng-app="">
+                                    <label for="exampleInputEmail1"> Enter Mobile Number </label>
+                                    <input type="text" [ngModel]="mobile" minlength="10" maxlength="10" name="mobile" class="form-control" ng-model="mobile" id="mobile" aria-describedby="emailHelp" placeholder="Enter Mobile" onfocusout="numbers()" required>
+                                    <span style="display:none; color:red" id="mobileerror">Please Enter Only Numbers</span>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-app="">
+                                <div ng-app="">
+                                    <label for="exampleInputEmail1"> Enter Address </label>
+                                    <textarea rows="5" [ngModel]="address" minlength="10" class="form-control" id="Skills" value="Skills" name="address" required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-app="">
+                                <div ng-app="">
+                                    <label for="exampleInputEmail1"> Enter experience </label>
+                                    <textarea rows="5" [ngModel]="experinece" minlength="10" class="form-control" id="Skills" value="Skills" name="experinece" required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-app="">
+                                <div ng-app="">
+                                    <label for="exampleInputEmail1"> Enter Skills </label>
+                                    <textarea rows="5" [ngModel]="skill" class="form-control" minlength="10" id="Skills" value="Skills" name="skill" required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-app="">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" name="password" [ngModel]="password" minlength="6" maxlength="8" class="form-control" id="password" placeholder="Password" required>
+                            </div>
+                            <div class="form-group" ng-app="">
+                                <label for="exampleInputPassword1">confirm Password</label>
+                                <input type="password" name="confirmPassword" [ngModel]="confirmPassword" minlength="6" maxlength="8" class="form-control" placeholder="Password" id="confirmPassword" onfocusout="myFunction()" required>
+                                <span style="display:none; color:red" id="errorpassword">Password Not Match ReEnter Password</span>
+                            </div>
+
+                            <button type="submit" class="btn btn-outline-info" style="width:100%; margin-bottom:10px">Add My Details</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-sm">
+                <div class="row" style="color:red">
+                    Your Enter Details Past Date Cannote Enter Now, Please Contact Administrator
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<!--validate password field-->
+<script>
+    function myFunction() {
+       
+        var confirmpassword = document.getElementById("confirmPassword").value;
+        var password = document.getElementById("password").value;
+        if (password != confirmpassword) {
+            document.getElementById("password").value = "";
+            document.getElementById("confirmPassword").value = "";
+            var errorfield = document.getElementById("errorpassword");
+            errorfield.style.display = "block";
+        } else {
+            var errorfield = document.getElementById("errorpassword");
+            errorfield.style.display = "none";
+        }
+        x.value = x.value.toUpperCase();
+    }
+
+    function alphanumeric() {
+        var letters = /^[a-z]+$/;
+        var inputtxt = document.getElementById("name").value;
+      
+        if (inputtxt.match(letters)) {
+            
+            var errorfield = document.getElementById("nameerror");
+            errorfield.style.display = "none";
+
+        }
+        else {
+           
+            document.getElementById("name").value = "";
+            var errorfield = document.getElementById("nameerror");
+            errorfield.style.display = "block";
+            
+        }
+    }
+
+    function numbers() {
+       
+        var inputtxt = document.getElementById("mobile").value;
+        
+        if (isNaN(inputtxt)) {
+           
+            document.getElementById("mobile").value = "";
+            var errorfield = document.getElementById("mobileerror");
+            errorfield.style.display = "block";
+
+        }
+        else {
+            
+            var errorfield = document.getElementById("mobileerror");
+            errorfield.style.display = "none";
+           
+        }
+    }
+</script>
+<!--validate end-->
+<script>
+    onSubmit() {
+        this.http.post('@Url.Action("AddDetils", "Home")', this.loginForm.value).subscribe(res => console.log(res));
+    }
+</script>
+

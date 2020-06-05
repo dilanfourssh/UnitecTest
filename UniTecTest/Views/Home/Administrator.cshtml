@@ -1,0 +1,134 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_customizeshared.cshtml";
+
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+@*<style>
+        input.ng-invalid {
+            background-color: red;
+
+
+        }
+        input.ng-valid {
+            background-color: yellow;
+        }
+    </style>*@
+
+<div class="container" style="margin-top:20px">
+
+    <div class="row" id="webtemplatetitle" style="background-color:#598a95ad; border-radius:10px 10px 10px 10px; padding:20px 20px 20px 20px; color:white">
+        <div class="col-md col-sm">
+            <h4 style="color:white">
+                Add Employer Of Company
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md col-sm">
+            <img src="~/Image/addemplyer.png" style="width:100%" />
+        </div>
+
+        <div class="col-sm">
+            <div class="row" style="margin-bottom:30px;">
+                <div class="col-sm" style="background-color:#598a95ad;margin-top:10px; border-radius:10px 10px 10px 10px; padding:20px 20px 20px 20px; color:white">
+                    <h4 style="text-align:center"> <i class="fas fa-battery-half"></i> Add Tempory Employer</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <form ngNoForm name="login-form" id="login-form" [formGroup]="loginForm" (submit)="onSubmit()" [action]='@Url.Action("AddDetils", "Home")' method='POST'>
+                        <div class="form-group" ng-app="">
+                            <div ng-app="">
+                                <label for="exampleInputEmail1"> Enter Employer first Name </label>
+                                <input type="text" [ngModel]="name" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter first Name" onfocusout="alphanumeric()" required>
+                                <span style="display:none; color:red" id="nameerror">Please Enter Only Characters</span>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-app="">
+                            <div ng-app="">
+                                <label for="exampleInputEmail1"> Enter Employer Email </label>
+                                <input type="email" [ngModel]="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Email" required>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-app="">
+                            <div ng-app="">
+                                <label for="exampleInputEmail1"> Select Empoyer Position </label>
+                                <select class="form-control" [ngModel]="position" name="position">
+                                    <option value="SoftwareEng">Software Engeener</option>
+                                    <option value="AssociativeSoftwareEng">Associative Software Engeener</option>
+                                    <option value="JuniorSoftwareEng">junior Software Engeener</option>
+                                    <option value="TraneeSoftwareEng">Tranee Software Engeener</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-app="">
+                            <div ng-app="">
+                                <label for="exampleInputEmail1"> Enter Employer Salary </label>
+                                <input type="text" [ngModel]="salary" name="salary" class="form-control" minlength="2" id="salary" aria-describedby="emailHelp" placeholder="Enter Salary" onfocusout="numbers()" required>
+                                <span style="display:none; color:red" id="mobileerror">Please Enter Only Numbers</span>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-app="">
+                            <div ng-app="">
+                                <label for="exampleInputEmail1"> Enter Tempory password </label>
+                                <input type="password" [ngModel]="password" name="password" minlength="6" maxlength="8" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Tempory Password" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-info" style="width:100%; margin-bottom:10px">Add Employer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--validate-->
+<script>
+function alphanumeric() {
+        var letters = /^[a-z]+$/;
+        var inputtxt = document.getElementById("name").value;
+
+        if (inputtxt.match(letters)) {
+
+            var errorfield = document.getElementById("nameerror");
+            errorfield.style.display = "none";
+
+        }
+        else {
+
+            document.getElementById("name").value = "";
+            var errorfield = document.getElementById("nameerror");
+            errorfield.style.display = "block";
+
+        }
+    }
+
+    function numbers() {
+
+        var inputtxt = document.getElementById("salary").value;
+
+        if (isNaN(inputtxt)) {
+
+            document.getElementById("salary").value = "";
+            var errorfield = document.getElementById("mobileerror");
+            errorfield.style.display = "block";
+
+        }
+        else {
+
+            var errorfield = document.getElementById("mobileerror");
+            errorfield.style.display = "none";
+
+        }
+    }
+</script>
+<!--validate end-->
+<script>
+    onSubmit() {
+        this.http.post('@Url.Action("AddDetils", "Home")', this.loginForm.value).subscribe(res => console.log(res));
+    }
+</script>
+
